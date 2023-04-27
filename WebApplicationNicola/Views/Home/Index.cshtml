@@ -4,5 +4,15 @@
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <p>Benvenuto nella nostra app per la vendita di cellulari</p>
+
+    <div class="login">
+        <h2>LOGIN</h2>
+
+        <form method="post" enctype="multipart/form-data" asp-controller="Home" asp-action="Index">
+            <p><input type="text" name="username" value="" placeholder="Ussername or Email" required/></p>
+            <p><input type="password" name="password" value="" placeholder="Password" required/></p>
+            <p class="submit"><input type="submit" name="commit" value="Login"/></p>
+        </form>
+    </div>
 </div>

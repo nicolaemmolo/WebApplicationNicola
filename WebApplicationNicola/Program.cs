@@ -1,3 +1,12 @@
+//crea app per vendere cellulari
+//crea login
+//3 coppie user e password
+//con authentication filter vedere se è autenticato o meno
+//visualizzare elenco (lato client o MVC) e mostrare elenco in pagina web
+//pulsante COMPRA 
+//compra modello e in automatico dopo che compri fa il log out
+//sistema il css in modo che sia fruibile
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.

@@ -1,16 +1,17 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using WebApplicationNicola.Models;
+using WebApplicationNicola.Repository;
 
 namespace WebApplicationNicola.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogin _loginUser;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogin logUser)
         {
-            _logger = logger;
+            _loginUser = logUser;
         }
 
         public IActionResult Index()
@@ -18,15 +19,21 @@ namespace WebApplicationNicola.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        [HttpPost]
+        public IActionResult Index(string username, string password)
         {
-            return View();
-        }
+            var result = _loginUser.AuthenticateUser(username, password);
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            if (result)
+            {
+                ViewBag.username = string.Format("Successfully logged-in", username);
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                ViewBag.username = string.Format("Login Failed", username);
+                return View();
+            }
         }
     }
 }
